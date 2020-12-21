@@ -787,7 +787,10 @@ DATA_TYPE * find_node(struct node * treex, DATA_TYPE val) {
         while(start < end) {
             int mid = (start+end) / 2;
             if(DATA_EQUAL(tree->values[mid],val)) {
-                return &tree->values[mid];
+                if(tree->values[mid].valid){
+                    return &tree->values[mid];
+                }
+                return NULL;
             } else if(DATA_LESS_THAN(tree->values[mid],val)) {
                 start = mid+1;
             } else {
